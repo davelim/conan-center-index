@@ -1,0 +1,19 @@
+diff --git a/CMake/folly-deps.cmake b/CMake/folly-deps.cmake
+index fc0c87e16..5c8533e21 100644
+--- a/CMake/folly-deps.cmake
++++ b/CMake/folly-deps.cmake
+@@ -53,6 +53,14 @@ list(APPEND FOLLY_LINK_LIBRARIES ${DOUBLE_CONVERSION_LIBRARY})
+ list(APPEND FOLLY_INCLUDE_DIRECTORIES ${DOUBLE_CONVERSION_INCLUDE_DIR})
+ 
+ find_package(gflags MODULE)
++if(gflags_FOUND)
++  set(LIBGFLAGS_FOUND ${gflags_FOUND})
++  set(LIBGFLAGS_INCLUDE_DIR ${gflags_INCLUDE_DIRS})
++  set(LIBGFLAGS_LIBRARY ${gflags_LIBS})
++endif()
++message(STATUS "FOUND: ${LIBGFLAGS_FOUND}")
++message(STATUS "INCLUDE: ${LIBGFLAGS_INCLUDE_DIR}")
++message(STATUS "LIB: ${LIBGFLAGS_LIBRARY}")
+ set(FOLLY_HAVE_LIBGFLAGS ${LIBGFLAGS_FOUND})
+ if(LIBGFLAGS_FOUND)
+   list(APPEND FOLLY_LINK_LIBRARIES ${LIBGFLAGS_LIBRARY})
